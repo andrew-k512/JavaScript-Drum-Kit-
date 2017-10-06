@@ -25,10 +25,7 @@
       <kbd>F</kbd>
       <span class="sound">openhat</span>
     </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
+
     <div data-key="72" class="key">
       <kbd>H</kbd>
       <span class="sound">ride</span>
@@ -45,13 +42,19 @@
       <kbd>L</kbd>
       <span class="sound">tink</span>
     </div>
+    <div>
+      <div data-key="32" class="spacebar">
+        <kbd>Spacebar</kbd>
+        <span class="sound">boom</span>
+      </div>
+    </div>
   </div>
 
   <audio data-key="65" src="sounds/clap.wav"></audio>
   <audio data-key="83" src="sounds/hihat.wav"></audio>
   <audio data-key="68" src="sounds/kick.wav"></audio>
   <audio data-key="70" src="sounds/openhat.wav"></audio>
-  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="32" src="sounds/boom.wav"></audio>
   <audio data-key="72" src="sounds/ride.wav"></audio>
   <audio data-key="74" src="sounds/snare.wav"></audio>
   <audio data-key="75" src="sounds/tom.wav"></audio>
@@ -63,7 +66,7 @@
 
   window.addEventListener('keydown', function (e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"], .spacebar[data-key="${e.keyCode}"]`);
     if(!audio) return;
     audio.currentTime = 0;
     audio.play();
@@ -76,7 +79,7 @@
     this.classList.remove('playing');
   }
 
-  const keys = document.querySelectorAll('.key');
+  const keys = document.querySelectorAll('.key, .spacebar');
   keys.forEach(key => key.addEventListener('transitionend', removeTransition))
 </script>
 
